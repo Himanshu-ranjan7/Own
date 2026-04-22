@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khusei Pandey — The Creative Edit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#060606;
+  --dark:#0e0c0b;
+  --card:#111009;
+  --gold:#c8a96e;
+  --gold-dim:rgba(200,169,110,0.15);
+  --gold-glow:rgba(200,169,110,0.06);
+  --rust:#a83d20;
+  --blue:#3d6080;
+  --cream:#ede8de;
+  --muted:rgba(237,232,222,0.45);
+  --dim:rgba(237,232,222,0.18);
+}
+html{scroll-behavior:smooth}
+body{
+  background: radial-gradient(circle at 20% 30%, #1a1208, transparent 40%),
+              radial-gradient(circle at 80% 70%, #0f1a2b, transparent 45%),
+              radial-gradient(circle at 50% 50%, #000000, #060606 60%);
+  background-color:#060606;
+  animation:bgMove 12s ease-in-out infinite alternate;
+  color:var(--cream);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ── */
+*{
+  cursor:auto !important;
+}
+#stars{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:200;
+  padding:1.6rem 5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:background .5s,padding .4s;
+}
+nav.stuck{
+  background:rgba(6,6,6,0.88);
+  backdrop-filter:blur(18px);
+  padding:1.1rem 5rem;
+  border-bottom:1px solid var(--gold-dim);
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--gold);font-weight:400;
+}
+.nav-links{display:flex;gap:2.8rem;list-style:none}
+.nav-links a{
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .3s;
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--gold-dim);color:var(--gold);
+  padding:.55rem 1.4rem;text-decoration:none;
+  transition:all .3s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--black)}
+
+/* ── HERO ── */
+#hero{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 5rem 5rem;
+  position:relative;overflow:hidden;
+}
+
+/* animated orb background */
+.orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  filter:blur(100px);opacity:.18;
+}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,#a83d20,transparent 70%);top:-200px;right:-150px;animation:drift1 14s ease-in-out infinite alternate}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,#3d6080,transparent 70%);bottom:-100px;left:10%;animation:drift2 18s ease-in-out infinite alternate}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,#c8a96e,transparent 70%);top:40%;left:40%;opacity:.1;animation:drift3 10s ease-in-out infinite alternate}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(-60px,80px) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(80px,-60px) scale(1.1)}}
+@keyframes drift3{from{transform:translate(0,0)}to{transform:translate(-40px,40px)}}
+
+@keyframes bgMove{
+  0%{
+    background-position: 20% 30%, 80% 70%, 50% 50%;
+  }
+  100%{
+    background-position: 30% 40%, 70% 60%, 50% 50%;
+  }
+}
+
+/* large decorative letter */
+.hero-deco-letter{
+  position:absolute;
+  right:+1.5rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-family:'Playfair Display',serif;
+  font-size:20vw;
+  font-weight:600;
+  color:rgba(255,255,255,0.015);
+  letter-spacing:-0.05em;
+  pointer-events:none;
+}
+
+/* starburst corner */
+.star-svg{position:absolute;pointer-events:none}
+
+.hero-top-row{
+  position:absolute;top:0;left:0;right:0;
+  padding:8.5rem 5rem 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.hero-tag-pill{
+  display:inline-flex;align-items:center;gap:.6rem;
+  border:1px solid var(--gold-dim);
+  padding:.4rem 1rem;
+  font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+}
+.hero-tag-pill::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-small-text{
+  font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);text-align:right;line-height:2;max-width:200px;
+}
+
+.hero-main-text{margin-bottom:3.5rem;position:relative;z-index:2}
+.hero-eyebrow{
+  font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--gold)}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,11vw,11rem);
+  font-weight:300;line-height:.9;letter-spacing:-.02em;
+  margin-bottom:.5rem;
+}
+.hero-name .gold {
+  color: rgba(255, 239, 149, 0.596); font-style:italic;
+}
+.hero-name .outline{
+  -webkit-text-stroke:1px rgba(255, 255, 255, 0.519); font-style:italic;
+  color:transparent;
+}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  position:relative;z-index:2;
+}
+.hero-desc{
+  max-width:400px;
+  font-size:.88rem;line-height:2;color:var(--muted);
+}
+.hero-desc strong{color:var(--cream);font-weight:400}
+.hero-actions{display:flex;flex-direction:column;align-items:flex-end;gap:1rem}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:.75rem;
+  background:var(--gold);color:var(--black);
+  padding:1rem 2.4rem;text-decoration:none;
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  transition:all .3s;
+}
+.btn-gold:hover{background:var(--cream);transform:translateY(-3px)}
+.btn-gold .arr{transition:transform .3s}
+.btn-gold:hover .arr{transform:translateX(5px)}
+.hero-scroll-hint{
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);display:flex;align-items:center;gap:.6rem;
+}
+.hero-scroll-hint::after{content:'';flex:1;height:1px;width:60px;background:var(--dim)}
+
+/* ── TICKER ── */
+.ticker{
+  border-top:1px solid var(--gold-dim);
+  border-bottom:1px solid var(--gold-dim);
+  background:rgba(200,169,110,0.03);
+  overflow:hidden;padding:.85rem 0;
+}
+.ticker-inner{
+  display:flex;white-space:nowrap;
+  animation:tick 28s linear infinite;
+}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.95rem;font-style:italic;letter-spacing:.1em;
+  color:var(--muted);padding:0 2.5rem;
+}
+.ticker-dot{color:var(--gold);padding:0 .5rem}
+
+/* ── SHARED ── */
+.s-label{
+  font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;
+}
+.s-label::before{content:'';width:1.5rem;height:1px;background:var(--gold)}
+.s-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:300;line-height:1.05;
+}
+.s-title em{font-style:italic;color:var(--gold)}
+
+section{
+  padding:8rem 5rem;
+  position:relative;
+  z-index:2;
+}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.fi.on{opacity:1;transform:translateY(0)}
+.fi.d1{transition-delay:.1s}.fi.d2{transition-delay:.2s}
+.fi.d3{transition-delay:.3s}.fi.d4{transition-delay:.4s}
+.fi.d5{transition-delay:.5s}.fi.d6{transition-delay:.6s}
+
+/* ── ABOUT ── */
+#about{background:transparent;overflow:hidden}
+.about-layout{
+  display:grid;grid-template-columns:1fr 2.2fr;
+  gap:5rem;align-items:start;margin-top:5rem;
+}
+/* compact photo card */
+.photo-card{
+  position:relative;
+}
+.photo-frame{
+  aspect-ratio:3/4;max-width:260px;height:420px;
+  background:#1a1510;
+  border:1px solid var(--gold-dim);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.photo-frame:hover img{transform:scale(1.04)}
+.photo-monogram{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:300;font-style:italic;
+  color:rgba(200,169,110,0.12);letter-spacing:-.05em;
+}
+.photo-frame::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(6,6,6,.6));
+  pointer-events:none;
+}
+.photo-corner{
+  position:absolute;
+  width:1.8rem;height:1.8rem;
+}
+.pc-tl{top:-8px;left:-8px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.pc-br{bottom:-8px;right:-8px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+.photo-tag{
+  position:absolute;bottom:-1rem;left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+  background:var(--black);border:1px solid var(--gold-dim);
+  padding:.4rem 1.2rem;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+}
+.stat-row{
+  display:flex;gap:1.5rem;margin-top:2.5rem;
+}
+.stat-box{
+  border:1px solid var(--gold-dim);padding:1.1rem 1.4rem;flex:1;
+}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1;
+}
+.stat-lbl{
+  font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-top:.3rem;
+}
+
+.about-content p{
+  font-size:.9rem;line-height:2.1;color:var(--muted);margin-bottom:1.4rem;
+}
+.about-content p strong{color:var(--cream);font-weight:400}
+.pull-quote{
+  margin-top:6rem;
+  text-align:left;
+  max-width:900px;
+  margin-left:0;
+  margin-right:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.5vw,3rem);
+  line-height:1.3;
+  color:var(--cream);
+  font-style:italic;
+}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+.chip{
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--gold-dim);
+  padding:.38rem 1rem;color:var(--muted);
+  transition:all .3s;
+}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── SERVICES ── */
+#services{background:transparent}
+.services-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:4rem;
+}
+.services-subtext{
+  max-width:340px;font-size:.85rem;line-height:1.9;color:var(--muted);text-align:right;
+}
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.svc-item{
+  padding:2.8rem;
+  border-right:1px solid var(--gold-dim);
+  border-bottom:1px solid var(--gold-dim);
+  position:relative;overflow:hidden;
+  transition:background .4s;
+}
+.svc-item:nth-child(3n){border-right:none}
+.svc-item:nth-child(n+4){border-bottom:none}
+.svc-item:hover{background:rgba(200,169,110,0.04)}
+.svc-item::after{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s ease;
+}
+.svc-item:hover::after{transform:scaleX(1)}
+.svc-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:4.5rem;font-weight:300;
+  color:rgba(200,169,110,0.18);
+  line-height:1;margin-bottom:.8rem;
+  transition:color .4s;
+}
+.svc-item:hover .svc-n{color:rgba(200,169,110,0.35)}
+.svc-icon{font-size:1.2rem;margin-bottom:1rem;display:block}
+.svc-name{
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cream);font-weight:400;margin-bottom:.8rem;
+}
+.svc-desc{font-size:.78rem;line-height:1.9;color:var(--muted)}
+.svc-arr{
+  display:inline-block;margin-top:1.2rem;
+  font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  color:transparent;
+  transition:color .3s,transform .3s;
+}
+.svc-item:hover .svc-arr{color:var(--gold);transform:translateX(4px)}
+
+/* ── WORK ── */
+#work{background:transparent}
+.work-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:4rem;
+}
+.work-count{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:300;
+  color:rgba(200,169,110,0.1);line-height:1;
+}
+
+/* Bento grid */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:auto;
+  gap:1rem;
+}
+.ben{
+  position:relative;overflow:hidden;
+  background:var(--card);
+  border:1px solid rgba(200,169,110,0.08);
+  cursor:none;
+  transition:border-color .4s;
+}
+.ben:hover{border-color:rgba(200,169,110,0.3)}
+.ben1{grid-column:span 5;min-height:490px}
+.ben2{grid-column:span 7;min-height:360px}
+.ben3{grid-column:span 4;min-height:400px}
+.ben4{grid-column:span 3;min-height:200px}
+.ben5{grid-column:span 5;min-height:220px}
+.ben6{grid-column:span 7;min-height:220px}
+.ben7{grid-column:span 6;grid-row:span 7;min-height:820px;}
+
+.ben-bg{
+  position:absolute;
+  inset:0;
+  background-size:contain;
+  background-position:center top;
+  background-repeat:no-repeat;
+  transition:transform .7s ease,filter .5s;
+}
+.ben:hover .ben-bg{transform:scale(1.05)}
+.b1-bg{background:url("images/photo3.jpg") center/cover no-repeat;}
+.b2-bg{background:url("images/photo1.jpeg") center/cover no-repeat;}
+.b3-bg{background:url("images/photo2.jpeg") center/cover no-repeat;}
+.b4-bg{background:linear-gradient(135deg,#0a1f15 0%,#1a4d30 50%,#2e7a4a 100%)}
+.b5-bg{background:linear-gradient(135deg,#1a1505 0%,#4d3d0f 50%,#8a6b18 100%)}
+.b6-bg{background:linear-gradient(135deg,#0f0f2a 0%,#1e1e5c 50%,#2d2d8a 100%)}
+.b7-bg{background:url("images/photo4.jpeg") center/cover no-repeat;}
+
+/* grid decorative elements inside bento */
+.ben-deco{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:.12;
+  font-size:6rem;transition:opacity .5s;
+}
+.ben:hover .ben-deco{opacity:.22}
+
+.ben-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,6,6,.95) 0%,rgba(6,6,6,.2) 55%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.8rem;
+  transform:translateY(8px);
+  transition:transform .4s;
+}
+.ben:hover .ben-overlay{transform:translateY(0)}
+
+.ben-cat{
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.4rem;
+}
+.ben-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:300;line-height:1.25;
+}
+.ben1 .ben-title{font-size:1.7rem}
+
+.ben-tag-tl{
+  position:absolute;top:1.2rem;left:1.2rem;
+  background:rgba(6,6,6,.7);border:1px solid var(--gold-dim);
+  font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);padding:.3rem .8rem;
+  backdrop-filter:blur(8px);
+}
+
+/* ── STATEMENT STRIP ── */
+#statement{
+  padding:6rem 5rem;
+  overflow:hidden;position:relative;
+}
+.stmt-eyebrow{
+  font-size:0.6rem;letter-spacing:.4em;text-transform:uppercase;
+  color:rgba(255, 255, 255, 0.666);margin-bottom:1.5rem;
+}
+.stmt-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,4.2rem);
+  font-weight:300;line-height:1.25;
+  color:#8c7345;max-width:880px;font-style:italic;
+}
+.stmt-author{
+  margin-top:3rem;
+  font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(255, 255, 255, 0.666);display:flex;align-items:center;gap:1rem;
+}
+.stmt-author::before{content:'';width:2rem;height:1px;background:rgba(255, 255, 255, 0.3)}
+.stmt-deco{
+  position:absolute;right:5rem;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:14rem;font-weight:600;font-style:italic;
+  color:rgba(6,6,6,.06);line-height:1;pointer-events:none;
+}
+
+/* ── CONTACT ── */
+#contact{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:90vh;padding:0;
+  position:relative;
+}
+.c-left{
+  background:transparent;
+  padding:7rem 5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.c-right{
+  padding:7rem 5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  background:transparent;
+  border-left:1px solid var(--gold-dim);
+}
+.c-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5.5vw,5.5rem);
+  font-weight:300;line-height:1.05;
+  margin:1.5rem 0 3.5rem;
+}
+.c-big em{font-style:italic;color:var(--gold)}
+.c-row{
+  padding:1.5rem 0;
+  border-bottom:1px solid rgba(237,232,222,.07);
+}
+.c-row:first-of-type{border-top:1px solid rgba(237,232,222,.07)}
+.c-lbl{
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.4rem;
+}
+.c-val{font-size:.9rem;color:var(--cream)}
+.c-val a{color:var(--cream);text-decoration:none;transition:color .3s}
+.c-val a:hover{color:var(--gold)}
+.c-avail{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin-top:2.5rem;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);
+}
+.c-avail::before{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--gold);animation:pulse 2s infinite;
+}
+
+/* form */
+.fg{margin-bottom:1.8rem}
+.fg label{
+  display:block;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.7rem;
+}
+.fg input,.fg textarea{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid rgba(237,232,222,.12);
+  padding:.7rem 0;color:var(--cream);
+  font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:300;
+  transition:border-color .3s;outline:none;
+}
+.fg input:focus,.fg textarea:focus{border-bottom-color:var(--gold)}
+.fg textarea{resize:none;height:90px}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--dim)}
+.send-btn{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1rem 2.8rem;
+  border:1px solid var(--gold);
+  background:transparent;color:var(--gold);
+  font-family:'Outfit',sans-serif;
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  transition:all .35s;cursor:none;
+}
+.send-btn:hover{background:var(--gold);color:var(--black);transform:translateY(-2px)}
+.send-btn .a{transition:transform .3s}
+.send-btn:hover .a{transform:translateX(5px)}
+
+/* ── FOOTER ── */
+footer{
+  padding:2rem 5rem;
+  border-top:1px solid var(--gold-dim);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-copy{font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+.f-tag{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem;font-style:italic;color:var(--gold);
+}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:1.2rem 2rem}
+  nav.stuck{padding:.9rem 2rem}
+  .nav-links,.nav-cta{display:none}
+  #hero{padding:0 2rem 4rem}
+  .hero-top-row{padding:7rem 2rem 0}
+  .hero-name{font-size:clamp(3.5rem,14vw,5rem)}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:2rem}
+  section{padding:5rem 2rem}
+  .about-layout{grid-template-columns:1fr;gap:3rem}
+  .photo-frame{max-width:200px}
+  .services-top{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .services-subtext{text-align:left}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-item{border-right:none}
+  .bento{grid-template-columns:1fr 1fr}
+  .ben1,.ben2,.ben3,.ben4,.ben5,.ben6{grid-column:span 2;grid-row:span 1;min-height:200px}
+  .work-head{flex-direction:column;align-items:flex-start;gap:1rem}
+  #contact{grid-template-columns:1fr}
+  .c-left,.c-right{padding:5rem 2rem}
+  #statement{padding:5rem 2rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem}
+}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<div id="cur"></div>
+<div id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">Khusei Pandey</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-deco-letter">KP</div>
+
+  <!-- starburst top-right -->
+  <svg class="star-svg" style="right:4rem;top:50%;transform:translateY(-50%);width:120px;opacity:.1" viewBox="0 0 100 100">
+    <g stroke="#c8a96e" stroke-width=".7" fill="none">
+      <line x1="50" y1="2" x2="50" y2="98"/>
+      <line x1="2" y1="50" x2="98" y2="50"/>
+      <line x1="15" y1="15" x2="85" y2="85"/>
+      <line x1="85" y1="15" x2="15" y2="85"/>
+      <line x1="7" y1="33" x2="93" y2="67"/>
+      <line x1="7" y1="67" x2="93" y2="33"/>
+      <line x1="33" y1="7" x2="67" y2="93"/>
+      <line x1="67" y1="7" x2="33" y2="93"/>
+    </g>
+  </svg>
+
+  <div class="hero-top-row">
+    <div class="hero-tag-pill fi">Available for freelance work</div>
+    <div class="hero-small-text fi d1">Design / Content<br>Research / Strategy<br>Rohtas, Bihar — India</div>
+  </div>
+
+  <div class="hero-main-text">
+    <div class="hero-eyebrow fi d1">Creative Portfolio 2025</div>
+    <div class="hero-name fi d2">
+      <span class="outline">Khusei</span><br>
+      <span class="gold">Pandey</span>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-desc fi d3">
+      I turn ideas — <strong>no matter how rough or wild</strong> — into designs that don't compromise. Designs that feel like you, not someone else's version of you.
+    </div>
+    <div class="hero-actions fi d4">
+      <a href="#work" class="btn-gold">Explore My Work <span class="arr">→</span></a>
+      <div class="hero-scroll-hint">Scroll to discover</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Logo Design</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Social Media Design</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">YouTube Thumbnails</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Infographics</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Illustrations</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Book Covers</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Content Writing</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Posters & Banners</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Brand Identity</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Vector Tracing</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Logo Design</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Social Media Design</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">YouTube Thumbnails</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Infographics</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Illustrations</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Book Covers</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Content Writing</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Posters & Banners</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Brand Identity</span><span class="ticker-dot">✦</span>
+    <span class="ticker-item">Vector Tracing</span><span class="ticker-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="s-label fi">Who I am</div>
+
+  <div class="about-layout">
+    <!-- compact photo -->
+    <div class="fi d1">
+      <div class="photo-card">
+        <div class="photo-frame">
+          <img src="images/khusei.png" alt="Khusei Pandey">
+          <div class="photo-corner pc-tl"></div>
+          <div class="photo-corner pc-br"></div>
+        </div>
+        <div class="photo-tag">Designer & Creator</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">2+</div>
+          <div class="stat-lbl">Years<br>Experience</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-lbl">Ideas<br>Designed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- text -->
+    <div class="about-content">
+      <h2 class="s-title fi d2" style="margin-bottom:2rem">
+        I don't just create visuals —<br>I create <em>connections.</em>
+      </h2>
+      <p class="fi d3">
+        Hey, I'm <strong>Khusei Pandey</strong> — a designer and content writer in my early twenties, currently pursuing my UG degree and crafting visuals that actually connect.
+      </p>
+      <p class="fi d4">
+        With over a year of hands-on experience, I've worked on real projects with real people — turning ideas into designs that feel <strong>personal, powerful, and on-point.</strong>
+      </p>
+      <div class="pull-quote fi d5">
+        "Your story deserves nothing less than my full attention."
+      </div>
+      <div class="chips fi d6">
+        <span class="chip">Graphic Design</span>
+        <span class="chip">Content Writing</span>
+        <span class="chip">Brand Identity</span>
+        <span class="chip">Visual Research</span>
+        <span class="chip">Illustrations</span>
+        <span class="chip">Canva Pro</span>
+        <span class="chip">Adobe Suite</span>
+        <span class="chip">Carousel Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-top">
+    <div>
+      <div class="s-label fi">What I do</div>
+      <h2 class="s-title fi d1">Design services<br>built with <em>intention.</em></h2>
+    </div>
+    <p class="services-subtext fi d2">
+      Each piece is crafted with care, creativity, and clarity — so your ideas don't just look good, they feel right.
+    </p>
+  </div>
+
+  <div class="svc-grid">
+    <div class="svc-item fi">
+      <div class="svc-n">01</div>
+      <span class="svc-icon">🎯</span>
+      <div class="svc-name">Thumbnails & Social Posts</div>
+      <div class="svc-desc">Eye-catching visuals that stop the scroll — for YouTube, Instagram, LinkedIn, and beyond.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+    <div class="svc-item fi d1">
+      <div class="svc-n">02</div>
+      <span class="svc-icon">✦</span>
+      <div class="svc-name">Logo Design</div>
+      <div class="svc-desc">Timeless logos that capture your brand's soul — distinctive, versatile, and unmistakably yours.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+    <div class="svc-item fi d2">
+      <div class="svc-n">03</div>
+      <span class="svc-icon">🖼️</span>
+      <div class="svc-name">Posters, Flyers & Banners</div>
+      <div class="svc-desc">Bold print and digital collateral that communicates, converts, and captivates at first glance.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+    <div class="svc-item fi d3">
+      <div class="svc-n">04</div>
+      <span class="svc-icon">📊</span>
+      <div class="svc-name">Infographics & Carousels</div>
+      <div class="svc-desc">Complex ideas made beautiful and shareable — designed for maximum engagement and clarity.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+    <div class="svc-item fi d4">
+      <div class="svc-n">05</div>
+      <span class="svc-icon">📖</span>
+      <div class="svc-name">Book Covers & Print</div>
+      <div class="svc-desc">Covers, business cards, letterheads, brochures — every brand touchpoint crafted with purpose.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+    <div class="svc-item fi d5">
+      <div class="svc-n">06</div>
+      <span class="svc-icon">✏️</span>
+      <div class="svc-name">Custom Illustrations</div>
+      <div class="svc-desc">Hand-crafted vector art and custom illustrations that give your brand a truly one-of-a-kind edge.</div>
+      <div class="svc-arr">Explore →</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-head">
+    <div>
+      <div class="s-label fi">Selected projects</div>
+      <h2 class="s-title fi d1">Real work,<br><em>real impact.</em></h2>
+    </div>
+    <div class="work-count fi d2">06</div>
+  </div>
+
+  <div class="bento">
+    <div class="ben ben1 fi">
+      <div class="ben-bg b1-bg"></div>
+      <div class="ben-deco">🕶️</div>
+      <span class="ben-tag-tl">Featured</span>
+      <div class="ben-overlay">
+        <div class="ben-cat">Concept Art</div>
+        <div class="ben-title">High Detail Anime Fantasy Composition</div>
+      </div>
+    </div>
+    <div class="ben ben2 fi d1">
+      <div class="ben-bg b2-bg"></div>
+      <div class="ben-deco">🌸</div>
+      <div class="ben-overlay">
+        <div class="ben-cat">Social Media · Fashion</div>
+        <div class="ben-title">Sunglasses Campaign</div>
+      </div>
+    </div>
+    <div class="ben ben3 fi d2">
+      <div class="ben-bg b3-bg"></div>
+      <div class="ben-deco">⏱️</div>
+      <div class="ben-overlay">
+        <div class="ben-cat">Brand Design</div>
+        <div class="ben-title">It's All About The Music — Headphone Ad</div>
+      </div>
+    </div>
+    <div class="ben ben4 fi d3">
+      <div class="ben-bg b4-bg"></div>
+      <div class="ben-deco">🛕</div>
+      <div class="ben-overlay">
+        <div class="ben-cat">Editorial</div>
+        <div class="ben-title">Kashi Vishwanath — Sacred Series</div>
+      </div>
+    </div>
+    <div class="ben ben5 fi d1">
+      <div class="ben-bg b5-bg"></div>
+      <div class="ben-deco">🍓</div>
+      <div class="ben-overlay">
+        <div class="ben-cat">Food & Lifestyle</div>
+        <div class="ben-title">Best Food In Town — YouTube Thumbnail</div>
+      </div>
+    </div>
+    <div class="ben ben6 fi d2">
+      <div class="ben-bg b6-bg"></div>
+      <div class="ben-deco">📐</div>
+      <div class="ben-overlay">
+        <div class="ben-cat">Marketing</div>
+        <div class="ben-title">New Arrivals</div>
+      </div>
+    </div>
+    <div class="ben ben7">
+    <div class="ben-bg b7-bg"></div>
+
+    <div class="ben-overlay">
+      <div class="ben-cat">Poster Design</div>
+      <div class="ben-title">Identity Conflict — Visual Storytelling Poster</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT STRIP -->
+<section id="statement">
+  <div class="stmt-eyebrow fi">My design philosophy</div>
+  <div class="stmt-text fi d1">
+    "If you can think it, I can design it — with care, with craft, and without cutting corners."
+  </div>
+  <div class="stmt-author fi d2">Khusei Pandey, Designer & Content Writer</div>
+  <div class="stmt-deco">✦</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:0">
+  <div class="c-left">
+    <svg class="star-svg" style="right:3rem;bottom:4rem;width:90px;opacity:.08" viewBox="0 0 100 100">
+      <g stroke="#c8a96e" stroke-width=".7" fill="none">
+        <line x1="50" y1="2" x2="50" y2="98"/>
+        <line x1="2" y1="50" x2="98" y2="50"/>
+        <line x1="15" y1="15" x2="85" y2="85"/>
+        <line x1="85" y1="15" x2="15" y2="85"/>
+        <line x1="7" y1="33" x2="93" y2="67"/>
+        <line x1="7" y1="67" x2="93" y2="33"/>
+        <line x1="33" y1="7" x2="67" y2="93"/>
+        <line x1="67" y1="7" x2="33" y2="93"/>
+      </g>
+    </svg>
+    <div class="s-label fi">Ready to create?</div>
+    <div class="c-big fi d1">
+      Let's make<br>something<br><em>unforgettable.</em>
+    </div>
+    <div class="c-row fi d2">
+      <div class="c-lbl">Email</div>
+      <div class="c-val"><a href="mailto:pandeykhusei@gmail.com">pandeykhusei@gmail.com</a></div>
+    </div>
+    <div class="c-row fi d3">
+      <div class="c-lbl">Phone</div>
+      <div class="c-val"><a href="tel:9153737127">+91 9153 737 127</a></div>
+    </div>
+    <div class="c-row fi d4">
+      <div class="c-lbl">Location</div>
+      <div class="c-val">Rohtas, Bihar, India</div>
+    </div>
+    <div class="c-avail fi d5">Currently accepting new projects</div>
+  </div>
+
+  <div class="c-right">
+    <div class="s-label fi">Drop a message</div>
+    <p style="font-size:.8rem;color:var(--muted);margin:.6rem 0 2.5rem;line-height:1.9" class="fi d1">
+      Have a project in mind? A collaboration idea? Or just want to say hi? I respond within 8 hours — always.
+    </p>
+    <form onsubmit="return false">
+      <div class="fg fi d2">
+        <label>Your name</label>
+        <input type="text" placeholder="Jane Smith">
+      </div>
+      <div class="fg fi d3">
+        <label>Email address</label>
+        <input type="email" placeholder="jane@company.com">
+      </div>
+      <div class="fg fi d4">
+        <label>Project details</label>
+        <textarea placeholder="I need a logo for my new brand..."></textarea>
+      </div>
+      <button type="submit" class="send-btn fi d5">
+        Send Message <span class="a">→</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-copy">© 2026 Khusei Pandey — The Creative Edit. All rights reserved.</div>
+  <div class="f-tag">"If you can think it, I can design it."</div>
+</footer>
+
+<script>
+
+
+// Nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60));
+
+// Intersection observer
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:.12});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+// Hero fires immediately
+setTimeout(()=>{
+  document.querySelectorAll('#hero .fi').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('on'),120*i+100);
+  });
+},50);
+
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<200;i++){
+  stars.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*1.2,
+    d:Math.random()*0.5
+  });
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+  });
+}
+
+function animateStars(){
+  stars.forEach(s=>{
+    s.y += s.d;
+    if(s.y > canvas.height){
+      s.y = 0;
+      s.x = Math.random()*canvas.width;
+    }
+  });
+  drawStars();
+  requestAnimationFrame(animateStars);
+}
+
+animateStars();
+
+window.addEventListener('resize',()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
